@@ -1,6 +1,7 @@
 package de.eldecker.spitznamen.server;
 
 import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.Random;
 
 import de.eldecker.spitznamen.ISpitznamenGenerator;
@@ -8,8 +9,12 @@ import de.eldecker.spitznamen.model.SpitznamenException;
 import de.eldecker.spitznamen.model.SpitznamenRecord;
 
 
+/**
+ * Implementierung des Remote-Interface.
+ */
 public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
 
+	/** Array mit englischen Adjektiven */
     private static final String[] ADJEKTIVE_ARRAY = {
             "Awesome", "Brave", "Clever", "Daring", "Eager", "Fantastic",
             "Gentle", "Happy", "Intelligent", "Jolly", "Kind", "Lively",
@@ -18,6 +23,7 @@ public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
             "Xenial", "Youthful", "Zealous"
         };
     
+    /** Array mit englischen Substantiven (Tiername) */
     private static final String[] SUBSTANTIVE_ARRAY = {
             "Ant", "Bear", "Cat", "Dog", "Elephant", "Frog", "Giraffe",
             "Horse", "Iguana", "Jaguar", "Kangaroo", "Lion", "Monkey",
@@ -27,9 +33,18 @@ public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
         };
 	
     
+    /** Zufallsgenerator für Auswahl zufälliges Element aus String-Array. */
     private static final Random _zufallsGenerator = new Random();
     
     
+    /**
+     * Wählt zufällig ein Element aus als Argument übergebenen Array aus.
+     * 
+     * @param stringArray Array, aus dem ein Element ausgewählt werden soll;
+     *                    muss mindestens ein Element haben
+     * 
+     * @return Zufällig ausgewählter String aus {@code stringArray}
+     */
     private static String getZufallsElement( String[] stringArray ) {
     
     	final int arrayLaenge  = stringArray.length;
@@ -39,15 +54,18 @@ public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
     }
     
     
+    /**
+     * Erzeugt neuen Spitznamen. 
+     * 
+     * @return Neuer Spitzname
+     */
     private static SpitznamenRecord holeSpitzname() {
     	
     	final String adjektiv   = getZufallsElement( ADJEKTIVE_ARRAY   );
     	final String substantiv = getZufallsElement( SUBSTANTIVE_ARRAY );
     	
     	final SpitznamenRecord spitzname = new SpitznamenRecord( adjektiv, substantiv );
-    	
-    	System.out.println( "Spitzname erzeugt: " + spitzname );
-    	
+    	    	
     	return spitzname;
     }
     
@@ -85,8 +103,10 @@ public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
 			
 			ergebnisArray[ i ] = holeSpitzname();
 		}
+		
+		System.out.println( "Spitznamen erzeugt: " + Arrays.toString( ergebnisArray ) );
 				
 		return ergebnisArray;
 	}
-
+	
 }

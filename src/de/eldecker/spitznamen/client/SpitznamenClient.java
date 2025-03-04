@@ -12,11 +12,26 @@ import de.eldecker.spitznamen.model.SpitznamenException;
 import de.eldecker.spitznamen.model.SpitznamenRecord;
 
 
+/**
+ * Client-Programm für Abfrage Spitzname über RMI. 
+ */
 public class SpitznamenClient {
 
-	public static void main(String[] args) 
-			throws RemoteException, NotBoundException, SpitznamenException {
-		
+	
+	/**
+	 * Einstiegsmethode.
+	 *  
+	 * @param args Kommandozeilenargumete (werden nicht ausgewertet)
+	 * 
+	 * @throws RemoteException RMI-Fehler
+	 * 
+	 * @throws NotBoundException Service nicht gefunden
+	 *  
+	 * @throws SpitznamenException Applikations-spezifischer Fehler
+	 */
+	public static void main( String[] args ) throws RemoteException, 			 
+			                                        NotBoundException, 
+			                                        SpitznamenException {		
 		System.out.println();
 		
 		final Registry registry = LocateRegistry.getRegistry();
@@ -24,7 +39,7 @@ public class SpitznamenClient {
 		final ISpitznamenGenerator stub = 
 					(ISpitznamenGenerator) registry.lookup( SPITZNAMEN_SERVICE_NAME );
 		
-		System.out.println( "Entfernten SpitznamenGenerator gefunden\n" );
+		System.out.println( "Entfernten SpitznamenGenerator gefunden.\n" );
 				  
 		final SpitznamenRecord[] spitznamenRecord = stub.holeSpitznamen( 3 );
 		
