@@ -1,0 +1,30 @@
+name: Java-Kompilierung
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: JDK einrichten
+      uses: actions/setup-java@v4
+      with:
+        java-version: 23
+        distribution: 'temurin'
+
+    - name: Java-Klassen kompilieren
+      run: |
+           find src -name "*.java" > sources.txt
+           echo -e "Anzahl Java-Quellcode-Dateien: $(wc -l < sources.txt)\n"
+           javac @sources.txt -d classes
+
+    - name: Überprüfen, ob class-Dateien erzeugt wurden
+      run: |
+        if [ -z "$(ls -A classes)" ]; then
+          echo "Fehler: Es wurden keine Klassen-Dateien erzeugt."
+          exit 1
+        fi
