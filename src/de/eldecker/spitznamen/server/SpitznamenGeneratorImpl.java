@@ -64,7 +64,8 @@ public class SpitznamenGeneratorImpl implements ISpitznamenGenerator {
     	final String adjektiv   = getZufallsElement( ADJEKTIVE_ARRAY   );
     	final String substantiv = getZufallsElement( SUBSTANTIVE_ARRAY );
     	
-    	final SpitznamenRecord spitzname = new SpitznamenRecord( adjektiv, substantiv );
+    	final SpitznamenRecord spitzname = 
+    				new SpitznamenRecord( adjektiv, substantiv );     			              
     	    	
     	return spitzname;
     }
