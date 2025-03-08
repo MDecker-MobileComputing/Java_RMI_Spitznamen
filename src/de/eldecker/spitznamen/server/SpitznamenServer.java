@@ -11,10 +11,11 @@ import de.eldecker.spitznamen.ISpitznamenGenerator;
 
 
 /**
- * Klasse mit Startmethode für Server.
+ * Klasse mit Startmethode für Server (inkl. RMI-Registry).
  */
 public class SpitznamenServer {
 
+    /** Default-Port-Nummer für RMI-Registry ist 1099. */
 	private static final int RMI_REGISTRY_PORT = 1099;
 	
 	
