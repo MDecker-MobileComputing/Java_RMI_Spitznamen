@@ -37,7 +37,7 @@ public class SpitznamenServer {
 		final Registry registry = LocateRegistry.createRegistry( RMI_REGISTRY_PORT );
 		registry.bind( SPITZNAMEN_SERVICE_NAME, stub );
 		
-		System.out.println( "\nSpitznamen-Server gestartet ..." );
+		System.out.println( "\nSpitznamen-Generator via RMI an Port " + RMI_REGISTRY_PORT + " gebunden ..." );
 	}
 	
 }
