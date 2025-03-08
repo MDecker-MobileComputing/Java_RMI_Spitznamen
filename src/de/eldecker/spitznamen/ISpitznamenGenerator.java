@@ -8,12 +8,13 @@ import de.eldecker.spitznamen.model.SpitznamenRecord;
 
 
 /**
- * Dieses Interface muss vom entfernten Objekt implementiert werden.
+ * Dieses {@code Remote}-Interface muss vom entfernten Objekt implementiert werden.
  */
 public interface ISpitznamenGenerator extends Remote {
     
 	/** Name, unter dem der Service an die RMI-Registry gebunden wird. */
 	public static final String SPITZNAMEN_SERVICE_NAME = "SpitznamenGenerator";
+	
 	
 	/**
 	 * Methode, die eine bestimmte Anzahl an zufällig erzeugten Spitznamen 
