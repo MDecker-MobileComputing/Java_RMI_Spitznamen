@@ -16,8 +16,14 @@ import de.eldecker.spitznamen.ISpitznamenGenerator;
 public class SpitznamenServer {
 
     /** Default-Port-Nummer für RMI-Registry ist 1099. */
-	private static final int RMI_REGISTRY_PORT = 1099;
-	
+	private static final int PORT_RMI_REGISTRY = 1_099;
+	 
+	/** 
+	 * Port, unter dem das <i>Remote Objekt</i> bereitgestellt wird; wenn {@code 0}, 
+	 * dann wird zur Laufzeit ein freier Port gewählt. 
+	 */
+	private static final int PORT_OBJECT= 50_000;
+
 	
 	/**
 	 * Einstiegsmethode.
@@ -32,12 +38,14 @@ public class SpitznamenServer {
 	                                                AlreadyBoundException { 					
 	    System.out.println();
 	    
-	    final Registry registry = LocateRegistry.createRegistry( RMI_REGISTRY_PORT );
-	    System.out.println( "RMI-Registry an Port-Nr. " + RMI_REGISTRY_PORT + " gestartet." );
+	    final Registry registry = LocateRegistry.createRegistry( PORT_RMI_REGISTRY );
+	    System.out.println( "RMI-Registry an Port-Nr. " + PORT_RMI_REGISTRY + " gestartet." );
 	    
 		final SpitznamenGeneratorImpl serviceImpl = new SpitznamenGeneratorImpl();		
-		final ISpitznamenGenerator stub= (ISpitznamenGenerator) UnicastRemoteObject.exportObject( serviceImpl, 0 );
-				
+		final ISpitznamenGenerator stub= 
+		        (ISpitznamenGenerator) UnicastRemoteObject.exportObject( serviceImpl, PORT_OBJECT );
+						
+		
 		registry.bind( SPITZNAMEN_SERVICE_NAME, stub );
 		
 		System.out.println( "\nSpitznamen-Generator wartet auf Anfragen ..." );
