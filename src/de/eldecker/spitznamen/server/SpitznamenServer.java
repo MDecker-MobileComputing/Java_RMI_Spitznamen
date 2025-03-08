@@ -29,17 +29,15 @@ public class SpitznamenServer {
 	 * @throws AlreadyBoundException Fehler wenn Port für RMI-Registry schon belegt
 	 */
 	public static void main( String[] args ) throws RemoteException, 
-	                                                AlreadyBoundException { 			
-		
+	                                                AlreadyBoundException { 					
 	    System.out.println();
 	    
 	    final Registry registry = LocateRegistry.createRegistry( RMI_REGISTRY_PORT );
-	    System.out.println( "RMI-Registry an Port-Nr " + RMI_REGISTRY_PORT + " gestartet." );
+	    System.out.println( "RMI-Registry an Port-Nr. " + RMI_REGISTRY_PORT + " gestartet." );
 	    
 		final SpitznamenGeneratorImpl serviceImpl = new SpitznamenGeneratorImpl();		
 		final ISpitznamenGenerator stub= (ISpitznamenGenerator) UnicastRemoteObject.exportObject( serviceImpl, 0 );
-		
-		
+				
 		registry.bind( SPITZNAMEN_SERVICE_NAME, stub );
 		
 		System.out.println( "\nSpitznamen-Generator wartet auf Anfragen ..." );
