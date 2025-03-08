@@ -38,8 +38,9 @@ public class SpitznamenClient {
 		
 		final ISpitznamenGenerator stub = 
 					(ISpitznamenGenerator) registry.lookup( SPITZNAMEN_SERVICE_NAME );
-		
-		System.out.println( "Entfernten SpitznamenGenerator gefunden.\n" );
+				
+		System.out.println( "Entfernten SpitznamenGenerator gefunden: " + stub + "\n" );
+
 				  
 		final SpitznamenRecord[] spitznamenRecord = stub.holeSpitznamen( 3 );
 		
