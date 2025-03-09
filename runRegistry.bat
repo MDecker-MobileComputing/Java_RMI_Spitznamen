@@ -1,0 +1,4 @@
+
+set CLASSPATH=classes
+
+rmiregistry
