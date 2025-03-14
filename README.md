@@ -1,4 +1,4 @@
-# Beispiel für Java RMI: Spitznamen-Generator #
+# Beispiel für Java-RMI: Spitznamen-Generator #
 
 <br>
 
