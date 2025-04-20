@@ -44,8 +44,7 @@ public class SpitznamenServer {
 		final SpitznamenGeneratorImpl serviceImpl = new SpitznamenGeneratorImpl();		
 		final ISpitznamenGenerator stub= 
 		        (ISpitznamenGenerator) UnicastRemoteObject.exportObject( serviceImpl, PORT_OBJECT );
-						
-		
+
 		registry.bind( SPITZNAMEN_SERVICE_NAME, stub );
 		
 		System.out.println( "\nSpitznamen-Generator wartet auf Anfragen ..." );
