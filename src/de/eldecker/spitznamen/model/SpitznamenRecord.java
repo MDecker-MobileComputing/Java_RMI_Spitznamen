@@ -13,7 +13,8 @@ import java.io.Serializable;
  */
 public record SpitznamenRecord( String adjektiv, 
 		                        String substantiv ) 
-		implements Serializable {
+					implements Serializable {
+
 	
 	/**
 	 * Methode gibt ganzen Spitznamen zurück.
