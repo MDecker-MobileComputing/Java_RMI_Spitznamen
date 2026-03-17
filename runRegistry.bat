@@ -1,4 +1,4 @@
 
-set CLASSPATH=classes
+@set CLASSPATH=classes
 
-rmiregistry
+@rmiregistry
