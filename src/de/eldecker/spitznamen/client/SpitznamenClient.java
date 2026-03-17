@@ -13,43 +13,43 @@ import de.eldecker.spitznamen.model.SpitznamenRecord;
 
 
 /**
- * Client-Programm für Abfrage Spitzname über RMI. 
+ * Client-Programm für Abfrage Spitzname über RMI.
  */
 public class SpitznamenClient {
 
-	
-	/**
-	 * Einstiegsmethode.
-	 *  
-	 * @param args Kommandozeilenargumete (werden nicht ausgewertet)
-	 * 
-	 * @throws RemoteException RMI-Fehler
-	 * 
-	 * @throws NotBoundException Service nicht gefunden
-	 *  
-	 * @throws SpitznamenException Applikations-spezifischer Fehler
-	 */
-	public static void main( String[] args ) throws RemoteException, 			 
-			                                        NotBoundException, 
-			                                        SpitznamenException {		
-		System.out.println();
-		
-		final Registry registry = LocateRegistry.getRegistry();
-		
-		final ISpitznamenGenerator stub = 
-					(ISpitznamenGenerator) registry.lookup( SPITZNAMEN_SERVICE_NAME );
-				
-		System.out.println( "Entfernten SpitznamenGenerator gefunden: " + stub + "\n" );
 
-				  
-		final SpitznamenRecord[] spitznamenRecord = stub.holeSpitznamen( 3 );
-		
-		for ( int i = 0; i < spitznamenRecord.length; i++ ) {
-			
-			System.out.println( "\tSpitzname erhalten: " + spitznamenRecord[i] );
-		}
-		
-		System.out.println();
-	}
-	
+    /**
+     * Einstiegsmethode.
+     *
+     * @param args Kommandozeilenargumete (werden nicht ausgewertet)
+     *
+     * @throws RemoteException RMI-Fehler
+     *
+     * @throws NotBoundException Service nicht gefunden
+     *
+     * @throws SpitznamenException Applikations-spezifischer Fehler
+     */
+    public static void main( String[] args ) throws RemoteException,
+                                                    NotBoundException,
+                                                    SpitznamenException {
+        System.out.println();
+
+        final Registry registry = LocateRegistry.getRegistry();
+
+        final ISpitznamenGenerator stub =
+                    (ISpitznamenGenerator) registry.lookup( SPITZNAMEN_SERVICE_NAME );
+
+        System.out.println( "Entfernten SpitznamenGenerator gefunden: " + stub + "\n" );
+
+
+        final SpitznamenRecord[] spitznamenRecord = stub.holeSpitznamen( 3 );
+
+        for ( int i = 0; i < spitznamenRecord.length; i++ ) {
+
+            System.out.println( "\tSpitzname erhalten: " + spitznamenRecord[i] );
+        }
+
+        System.out.println();
+    }
+
 }
